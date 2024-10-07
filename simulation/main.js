@@ -4,6 +4,8 @@ const valueArray = JSON.parse(sessionStorage.getItem("valueArray"))
 const texts = [];
 const names = ["A","B", "C", "D", "E", "F", "G"];
 
+const model = sessionStorage.getItem("model");
+
 const button = document.querySelector("button");
 
 button.addEventListener("click", function () {
@@ -42,13 +44,15 @@ for (let i = 0; i < array.length; i++) {
 
 console.log(texts)
 
-let interval = setInterval(() => {
+const interval = setInterval(() => {
     loop()
-
-    createClones(array)
 
     updateTexts(texts, valueArray, names, array)
 }, timeValues.timeConstant);
+
+const interval2 = setInterval(() => {
+    createClones(array)
+}, model === "A" ? 10 : 50);
 
 const upTime = document.getElementById("upTime");
 const downTime = document.getElementById("downTime");
@@ -77,3 +81,8 @@ window.addEventListener("resize", function () {
 
     info.innerHTML = "1 Pixel ≈ " + (distanceValues.fixDistance / Math.pow(10, 6)).toFixed(1) + " Mm" 
 })
+
+if (model === "B") {
+    document.getElementById("timeDiv").remove()
+    document.getElementById("aboveDiv").innerHTML = "The time feature only <br> does not work for this Model"
+}

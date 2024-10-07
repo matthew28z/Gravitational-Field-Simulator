@@ -10,13 +10,13 @@ function randomValue(type) {
     let width;
     if (type === "Sun") {
         mass = getRandomInt(10, 15) * Math.pow(10, 35)
-        width = getRandomInt(70, 100)
+        width = getRandomInt(90, 100)
     } else if (type === "Planet") {
         mass = getRandomInt(1, 10) * Math.pow(10, getRandomInt(18, 20))
-        width = getRandomInt(20, 40)
+        width = getRandomInt(20, 30)
     } else {
         mass = getRandomInt(1, 10) * Math.pow(10, getRandomInt(14, 16))
-        width = getRandomInt(10, 15)
+        width = getRandomInt(10, 16)
     }
     return [mass, width]
 }

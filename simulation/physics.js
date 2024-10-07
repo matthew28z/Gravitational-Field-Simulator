@@ -1,4 +1,5 @@
 const valueArray = JSON.parse(sessionStorage.getItem("valueArray"));
+const model = sessionStorage.getItem("model");
 
 function position(obj, posX, posY) {
     document.querySelector("body").appendChild(obj)
@@ -39,7 +40,7 @@ function fillArray(valueArray) {
 export const array = fillArray(valueArray)
 
 console.log(array)
-const timeConstant = 10
+const timeConstant = model === "A" ? 10 : 3
 export const timeValues = { timeConstant: timeConstant, fixTime: timeConstant * Math.pow(10, -3), speedOfTime: 1}
 
 
@@ -88,14 +89,16 @@ function calcSpeed(ax, ay) {
     return [Ux, Uy]
 }
 
-function calcMovement(Ux, Uy, ax, ay) {
-    //New Approach
-    let x = Ux * timeValues.fixTime +  0.5 * ax * Math.pow(timeValues.fixTime, 2)
-    let y = Uy * timeValues.fixTime + 0.5 * ay * Math.pow(timeValues.fixTime, 2)
-    /*Old Approach
-        let x = Ux * timeValues.fixTime 
-    let y = Uy * timeValues.fixTime
-    */
+function calcMovement(Ux, Uy, ax = 0, ay = 0) {
+    let x;
+    let y;
+    if (model === "B") {
+        x = Ux * timeValues.fixTime +  0.5 * ax * Math.pow(timeValues.fixTime, 2)
+        y = Uy * timeValues.fixTime + 0.5 * ay * Math.pow(timeValues.fixTime, 2)
+    } else {
+        x = Ux * timeValues.fixTime 
+        y = Uy * timeValues.fixTime
+    }
     return [x, y]
 }
 
@@ -144,17 +147,40 @@ export function loop() {
         let ax = aArray[0]
         let ay = aArray[1]
 
-        const mArray = calcMovement(UxB, UyB, ax, ay)
-        //const mArray = calcMovement(Ux * timeValues.speedOfTime, Uy * timeValues.speedOfTime) 
-    
+        let mArray;
+        let speedArray;
+        let Ux;
+        let Uy;
+
+        if (model === "B") {
+            mArray = calcMovement(UxB, UyB, ax, ay)
+            speedArray = calcSpeed(ax, ay)
+        
+            Ux = speedArray[0] + UxB
+            Uy = speedArray[1] + UyB
+        } else if (model === "A") {
+            speedArray = calcSpeed(ax * timeValues.speedOfTime, ay * timeValues.speedOfTime) //accounts for the speed of time set bu the user
+            
+            Ux = speedArray[0] + UxB
+            Uy = speedArray[1] + UyB
+            
+            mArray = calcMovement(Ux * timeValues.speedOfTime, Uy * timeValues.speedOfTime) 
+        } else {
+            speedArray = calcSpeed(ax * timeValues.speedOfTime, ay * timeValues.speedOfTime)
+
+            Ux = speedArray[0] + UxB
+            Uy = speedArray[1] + UyB
+
+            let UxA = (Ux + UxB) / 2
+            let UyA = (Uy + UyB) / 2
+
+            mArray = calcMovement(UxA * timeValues.speedOfTime, UyA * timeValues.speedOfTime) 
+        }
+        
         let x = mArray[0]
         let y = mArray[1]
-
-        const speedArray = calcSpeed(ax, ay)
-        //const speedArray = calcSpeed(ax * timeValues.speedOfTime, ay * timeValues.speedOfTime) //accounts for the speed of time set bu the user
+       
     
-        let Ux = speedArray[0] + UxB
-        let Uy = speedArray[1] + UyB
     
         array[i].Ux = Ux
         array[i].Uy = Uy

@@ -36,7 +36,7 @@ p {
     width: fit-content;
     position: fixed;
     bottom: 10vw;
-    left: 30vw;
+    left: 35vw;
 }
 #presets button {
     width: 10vw;
@@ -72,5 +72,11 @@ input {
 }
 
 button:hover {
-    border-color: red !important
+    border-color: darkred !important
+}
+#modelP {
+    position: fixed;
+    top: 58vh;
+    left: 35vw;
+    width: 30vw;
 }

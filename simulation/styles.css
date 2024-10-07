@@ -52,7 +52,7 @@ p {
 #aboveDiv {
     position: fixed;
     width: fit-content;
-    top: 42vh;
+    top: 44vh;
     left: 10px;
 }
 #timeDiv {
@@ -60,11 +60,13 @@ p {
     width: fit-content;
     display: flex;
     position: fixed;
-    top: 48vh;
+    top: 50vh;
 }
 #timeDiv button {
     color: white;
     background-color: transparent;
+    width: 3vw;
+    aspect-ratio: 1/1;
     border: none;
     font-size: x-large;
     border: 1px solid white;
