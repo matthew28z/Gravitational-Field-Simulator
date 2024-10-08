@@ -1,0 +1,105 @@
+body {
+    background-color: darkblue;
+}
+.object {
+    background-color: lightgreen;
+    position: relative;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.planet {
+    background-color: purple;
+}
+.sun {
+    background-color: yellow;
+}
+p {
+    color: white;
+    width: fit-content;
+    position: relative;
+    left: 0;
+}
+
+.clone {
+    opacity: 1;
+    z-index: -1;
+    background-color: white;
+    transition: opacity 3s ease-out;
+    color: white;
+}
+
+.buttons {
+    right: 0;
+    position: fixed;
+    background-color: transparent;
+    border: none;
+    font-size: x-large;
+}
+#save {
+    bottom: 0 
+}
+#b {
+    top: 0
+}
+#info {
+    bottom: 0;
+    left: 5px;
+    position: fixed;
+}
+#timeDiv {
+    position: fixed;
+    top: 53vh;
+    left: 5px;
+}
+#timeText {
+    width: fit-content;
+    margin-left: 0;
+    margin-bottom: 1%;
+}
+#timeControls {
+    background-color: transparent;
+    width: fit-content;
+    display: flex;
+    height: 6vh;
+}
+#timeControls button {
+    color: white;
+    background-color: transparent;
+    width: 3vw;
+    aspect-ratio: 1/1;
+    border: none;
+    font-size: x-large;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+}
+#timeControls p {
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#controls {
+    position: fixed;
+    top: 53vh;
+    right: 5px;
+    display: grid;
+}
+#controls p {
+    margin-left: 10%;
+    margin-bottom: 1%;
+}
+.row {
+    display: flex;
+}
+.row button {
+    width: 33%;
+    aspect-ratio: 1/1;
+    font-size: larger;
+    padding: 0;
+    border: 1px solid white;
+    background-color: transparent;
+}
